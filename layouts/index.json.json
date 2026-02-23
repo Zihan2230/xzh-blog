@@ -1,34 +1,31 @@
-{{- /* Stack Theme 搜索索引 - 最终修复版 */ -}}
+{{- /* Stack Theme 搜索索引 - 根目录绝杀版 */ -}}
 {{- $.Scratch.Add "index" slice -}}
-{{- /* 关键点：RegularPages 会抓取所有板块（Post, Daily 等） */ -}}
+{{- /* 关键点：使用 RegularPages 抓取所有文章 */ -}}
 {{- range $index, $element := .Site.RegularPages -}}
-    
     {{- $title := .Title -}}
     {{- $date := .Date.Format "Jan 02, 2006" -}}
     {{- $permalink := .Permalink -}}
     
-    {{- /* 获取正文并清洗换行符 */ -}}
+    {{- /* 获取正文 */ -}}
     {{- $content := .Plain -}}
     {{- $content = replace $content "\n" " " -}}
     {{- $content = replace $content "\r" " " -}}
     
-    {{- /* 获取标签和分类 */ -}}
+    {{- /* 获取 Tag 和 分类 */ -}}
     {{- $tags_string := "" -}}
     {{- if .Params.tags -}}
         {{- $tags_string = delimit .Params.tags " " -}}
     {{- end -}}
-    
     {{- $categories_string := "" -}}
     {{- if .Params.categories -}}
         {{- $categories_string = delimit .Params.categories " " -}}
     {{- end -}}
 
-    {{- /* 拼接到一起，形成“超级索引字符串” */ -}}
+    {{- /* 拼接所有内容 */ -}}
     {{- $final_content := print $content " " $tags_string " " $categories_string -}}
-    
     {{- $image := .Params.image -}}
     
+    {{- /* 必须带 ID */ -}}
     {{- $.Scratch.Add "index" (dict "id" $index "title" $title "date" $date "permalink" $permalink "content" $final_content "image" $image) -}}
-
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}
