@@ -1,0 +1,170 @@
+baseURL: "https://example.com" # 以后买好域名了填在这里
+title: Zihan's Blog
+copyright: Zihan X
+theme: hugo-theme-stack
+
+
+languageCode: zh-cn
+DefaultContentLanguage: zh-cn
+hasCJKLanguage: true  # 开启中日韩字数统计优化 
+
+# 只有一个中文语言包，清爽！
+languages:
+    zh-cn:
+        languageName: 简体中文
+        weight: 1
+        params:
+            sidebar:
+                subtitle: 涉猎广泛的数学系学生
+
+# 你的板块导航
+menu:
+    main:
+        - identifier: home
+          name: 首页
+          url: /
+          weight: 1
+          params:
+              icon: home
+
+        - identifier: about
+          name: 关于我
+          url: /about/
+          weight: 2
+          params:
+              icon: user-circle # 记得下载 user-circle.svg
+
+        # === 你的五大护法 ===
+        
+        - identifier: math
+          name: 数学
+          url: /categories/数学/
+          weight: 3
+          params:
+              icon: tex # 积分符号，更有数学系的感觉
+
+        - identifier: tech
+          name: 软硬理工
+          url: /categories/软硬理工/
+          weight: 4
+          params:
+              icon: code  # 硬核科技感
+
+        - identifier: music
+          name: 音乐
+          url: /categories/音乐/
+          weight: 5
+          params:
+              icon: music
+
+        - identifier: visual
+          name: 视觉艺术
+          url: /categories/视觉艺术/
+          weight: 6
+          params:
+              icon: aperture # 光圈，致敬摄影
+
+        - identifier: physical
+          name: 体技
+          url: /categories/体技/
+          weight: 7
+          params:
+              icon: activity # 动感
+        
+        - identifier: daily
+          name: 碎碎念  # 或者叫“日常”、“生活”
+          url: /categories/日常/
+          weight: 8
+          params:
+              icon: coffee  # 记得去 Tabler 下载 coffee.svg，很有生活气息
+
+        # ===================
+
+        - identifier: archives
+          name: 归档
+          url: /archives/
+          weight: 99
+          params:
+              icon: archive
+
+    # 侧边栏底部的社交链接
+    social:
+        - identifier: github
+          name: GitHub
+          url: https://github.com/Zihan2230
+          params:
+              icon: brand-github
+
+        - identifier: bilibili
+          name: Bilibili
+          url: https://space.bilibili.com/319527162
+          params:
+              icon: brand-bilibili
+
+params:
+    mainSections:
+        - post
+    featuredImageField: image
+    rssFullContent: true
+    favicon: /favicon.ico
+    
+    # 侧边栏配置
+    sidebar:
+        emoji: 🥰
+        subtitle: 涉猎广泛的数学系学生
+        avatar: "img/avatar.png" # 记得把图片放在 static/img/avatar.png
+
+    # 文章配置
+    article:
+        math: false  # 必须关闭！交给你的 custom layout 处理
+        toc: true
+        readingTime: true
+        license:
+            enabled: true
+            default: Licensed under CC BY-NC-SA 4.0
+
+    # 图片处理
+    imageProcessing:
+        cover:
+            enabled: true
+        content:
+            enabled: true
+    
+    colorScheme:
+        # Display toggle
+        toggle: true
+
+        # Available values: auto, light, dark
+        default: auto
+
+
+    widgets:
+        # enabled: true  <-- 凶手就是这一行！删掉它！永远不要加它！
+        homepage:
+            - type: tag-cloud
+              params:
+                  limit: 10
+                  title: "标签云"
+        page:
+            - type: toc
+    
+
+# 评论系统（暂时留空，以后想开再说）
+services: 
+
+# 马克顿编译器设置（保留，配合数学公式）
+markup:
+    goldmark:
+        extensions:
+            passthrough:
+                enable: true
+                delimiters:
+                    block:
+                        - - \[
+                          - \]
+                        - - $$
+                          - $$
+                    inline:
+                        - - \(
+                          - \)
+

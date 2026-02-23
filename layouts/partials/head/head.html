@@ -1,0 +1,66 @@
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+{{- $description := partialCached "data/description" . .RelPermalink -}}
+<meta name='description' {{ printf "content=%q" $description | safeHTMLAttr }}>
+{{ with .Params.Keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+
+{{- $title := partial "data/title" . -}}
+<title>{{ $title }}</title>
+
+{{ with .Params.canonicalUrl }}
+<link rel="canonical" href="{{ . }}">
+{{ else }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ end }}
+
+{{- partial "head/custom-font.html" . -}}
+{{- partial "head/style.html" . -}}
+{{- partial "head/script.html" . -}}
+{{- partial "head/opengraph/include.html" . -}}
+
+{{- range .AlternativeOutputFormats -}}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{- end -}}
+
+{{- $favicon := partial "helper/image" (dict "Image" .Site.Params.favicon "Resources" resources) -}}
+{{ with $favicon }}
+    <link rel="shortcut icon" href="{{ .Permalink }}" />
+{{ end }}
+
+{{- if .Site.Params.cookies.enabled -}}
+    {{- partial "cookies/analytics.html" . -}}
+{{- else -}}
+    {{- template "_internal/google_analytics.html" . -}}
+{{- end -}}
+
+{{- partial "head/custom.html" . -}}
+
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://unpkg.com/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://unpkg.com/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+        ],
+        // 你的自定义宏字典
+        macros: {
+            '\\dif': '\\mathrm{d}',
+            '\\me': '\\mathrm{e}',
+            '\\mi': '\\mathrm{i}',
+            '\\bs': '\\boldsymbol',
+            '\\ver': '\\overrightarrow',
+            '\\Rep': '\\mathrm{Re}',
+            '\\Imp': '\\mathrm{Im}',
+            '\\Var': '\\mathrm{Var}',
+            '\\Cov': '\\mathrm{Cov}',
+            '\\card': '\\mathrm{card}',
+            '\\rank': '\\mathrm{rank}',
+            '\\zb': '\\square',
+            '\\para': '\\parallel'
+        }
+    });">
+</script>

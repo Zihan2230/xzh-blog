@@ -1,0 +1,16 @@
+# 基础界面
+darkMode: "暗色模式"
+toggleDarkMode: "切换主题"
+
+# 搜索相关 (Stack 主题专用 Key)
+search:
+    placeholder: "输入关键词搜索..."
+    notFound: "没找到相关内容"
+    results: "找到 %d 条结果"
+    title: "搜索"  # 左侧菜单如果调用 T "search.title" 会用到这个
+
+# 归档页
+archives:
+    title: "归档"
+    counter_days:
+        other: "%d 天"

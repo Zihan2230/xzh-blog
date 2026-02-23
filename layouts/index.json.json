@@ -1,0 +1,35 @@
+{{- /* Stack Theme 搜索索引 - 修正版 (带 ID 身份证) */ -}}
+{{- $.Scratch.Add "index" slice -}}
+{{- /* 注意：这里我们要同时获取 index (编号) 和 element (文章本身) */ -}}
+{{- range $index, $element := .Site.RegularPages -}}
+    
+    {{- $title := .Title -}}
+    {{- $date := .Date.Format "Jan 02, 2006" -}}
+    {{- $permalink := .Permalink -}}
+    
+    {{- /* 1. 获取纯文本并清洗换行符 */ -}}
+    {{- $content := .Plain -}}
+    {{- $content = replace $content "\n" " " -}}
+    {{- $content = replace $content "\r" " " -}}
+    
+    {{- /* 2. 拼接 Tags 和 Categories 到正文，用空格隔开 */ -}}
+    {{- $tags_string := "" -}}
+    {{- if .Params.tags -}}
+        {{- $tags_string = delimit .Params.tags " " -}}
+    {{- end -}}
+    
+    {{- $categories_string := "" -}}
+    {{- if .Params.categories -}}
+        {{- $categories_string = delimit .Params.categories " " -}}
+    {{- end -}}
+
+    {{- /* 3. 组合最终内容 (关键：Tag 必须拼接在这里，搜 Tag 才能搜到) */ -}}
+    {{- $final_content := print $content " " $tags_string " " $categories_string -}}
+    
+    {{- $image := .Params.image -}}
+    
+    {{- /* ⬇️⬇️⬇️ 关键修改在这里：必须加上 "id" $index ⬇️⬇️⬇️ */ -}}
+    {{- $.Scratch.Add "index" (dict "id" (string $index) "title" $title "date" $date "permalink" $permalink "content" $final_content "image" $image) -}}
+
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}
