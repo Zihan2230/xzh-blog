@@ -9,4 +9,4 @@ categories: ["摄影"]
 
 这是我拍的花切照片：
 
-![一张贴纸](photo1.jpg)
+![一张贴纸](photo12.jpg)

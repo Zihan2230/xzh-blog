@@ -1,19 +1,18 @@
-{{- /* Stack Theme 搜索索引 - 最终完美版 (Zihan's Fix) */ -}}
+{{- /* Stack Theme 搜索索引 - 最终修复版 */ -}}
 {{- $.Scratch.Add "index" slice -}}
-{{- /* range .Site.RegularPages 会遍历所有普通文章（包括 Post 和 Daily） */ -}}
+{{- /* 关键点：RegularPages 会抓取所有板块（Post, Daily 等） */ -}}
 {{- range $index, $element := .Site.RegularPages -}}
     
     {{- $title := .Title -}}
     {{- $date := .Date.Format "Jan 02, 2006" -}}
     {{- $permalink := .Permalink -}}
     
-    {{- /* 1. 获取正文纯文本 */ -}}
+    {{- /* 获取正文并清洗换行符 */ -}}
     {{- $content := .Plain -}}
-    {{- /* 清洗换行符，防止 JSON 报错 */ -}}
     {{- $content = replace $content "\n" " " -}}
     {{- $content = replace $content "\r" " " -}}
     
-    {{- /* 2. 获取 Tags 和 Categories，转成字符串 */ -}}
+    {{- /* 获取标签和分类 */ -}}
     {{- $tags_string := "" -}}
     {{- if .Params.tags -}}
         {{- $tags_string = delimit .Params.tags " " -}}
@@ -24,13 +23,11 @@
         {{- $categories_string = delimit .Params.categories " " -}}
     {{- end -}}
 
-    {{- /* 3. 【核心魔法】把 分类+标签+正文 全部拼在一起！ */ -}}
-    {{- /* 这样你搜分类名，其实是在搜内容里的关键词，绝对能搜到 */ -}}
+    {{- /* 拼接到一起，形成“超级索引字符串” */ -}}
     {{- $final_content := print $content " " $tags_string " " $categories_string -}}
     
     {{- $image := .Params.image -}}
     
-    {{- /* 4. 生成带 ID 的数据项 */ -}}
     {{- $.Scratch.Add "index" (dict "id" $index "title" $title "date" $date "permalink" $permalink "content" $final_content "image" $image) -}}
 
 {{- end -}}
