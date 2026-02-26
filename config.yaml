@@ -113,7 +113,7 @@ params:
     # 侧边栏配置
     sidebar:
         emoji: 🥰
-        subtitle: 涉猎广泛的数学系学生
+        subtitle: 傲慢是保护天才最好的盾牌
         avatar: "img/avatar.png" # 记得把图片放在 static/img/avatar.png
 
     # 文章配置
