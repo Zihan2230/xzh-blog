@@ -23,4 +23,21 @@
     }
 }
 
+/* 下载按钮样式 */
+.download-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #3180ff; /* 华为蓝/学术蓝 */
+    color: white !important;   /* 强制白色文字 */
+    border-radius: 4px;
+    text-decoration: none !important; /* 去掉下划线 */
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
 
+.download-btn:hover {
+    background-color: #274fa6; /* 鼠标悬停变深 */
+    transform: translateY(-2px); /* 微微上浮 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}

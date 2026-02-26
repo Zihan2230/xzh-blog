@@ -16,7 +16,7 @@ languages:
         weight: 1
         params:
             sidebar:
-                subtitle: 涉猎广泛的数学系学生
+                subtitle: 傲慢是保护天才最好的盾牌
 
 # 你的板块导航
 menu:
@@ -162,6 +162,11 @@ services:
 # 马克顿编译器设置（保留，配合数学公式）
 markup:
     goldmark:
+        # ⬇️ 新增部分：允许 HTML (下载按钮) ⬇️
+        renderer:
+            unsafe: true
+
+        # ⬇️ 原有部分：支持 LaTeX 数学公式 ⬇️
         extensions:
             passthrough:
                 enable: true
