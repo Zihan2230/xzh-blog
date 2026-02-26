@@ -1,7 +1,7 @@
 ---
 title: "我的摄影习作"
 date: 2026-02-22
-image: "photo1.jpg"  # 直接写文件名！不用写路径！
+image: "photo12.jpg"  # 直接写文件名！不用写路径！
 categories: ["摄影"]
 ---
 

@@ -7,6 +7,7 @@ theme: hugo-theme-stack
 languageCode: zh-cn
 DefaultContentLanguage: zh-cn
 hasCJKLanguage: true  # 开启中日韩字数统计优化 
+preserveTaxonomyNames: true
 
 # 只有一个中文语言包，清爽！
 languages:
@@ -104,6 +105,7 @@ menu:
 params:
     mainSections:
         - post
+        - daily
     featuredImageField: image
     rssFullContent: true
     favicon: /favicon.ico
@@ -147,6 +149,11 @@ params:
                   title: "标签云"
         page:
             - type: toc
+    
+    taxonomy:
+    # 针对分类页面的排序逻辑
+    orderBy: weight
+    order: desc # 或者 asc，看 Hugo 版本，通常默认是 weight 小的在前
     
 
 # 评论系统（暂时留空，以后想开再说）

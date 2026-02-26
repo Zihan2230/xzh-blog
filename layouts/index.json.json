@@ -1,31 +1,37 @@
-{{- /* Stack Theme 搜索索引 - 根目录绝杀版 */ -}}
+{{- /* Stack Theme 全站索引 - 霸道搜索版 (修复 Tag 搜索) */ -}}
 {{- $.Scratch.Add "index" slice -}}
-{{- /* 关键点：使用 RegularPages 抓取所有文章 */ -}}
 {{- range $index, $element := .Site.RegularPages -}}
+    
+    {{- /* 1. 获取基础信息 */ -}}
     {{- $title := .Title -}}
     {{- $date := .Date.Format "Jan 02, 2006" -}}
     {{- $permalink := .Permalink -}}
+    {{- $image := .Params.image -}}
     
-    {{- /* 获取正文 */ -}}
+    {{- /* 2. 获取 Tag 和 分类字符串 */ -}}
+    {{- $tags := "" -}}
+    {{- if .Params.tags -}}
+        {{- $tags = delimit .Params.tags " " -}}
+    {{- end -}}
+    
+    {{- $categories := "" -}}
+    {{- if .Params.categories -}}
+        {{- $categories = delimit .Params.categories " " -}}
+    {{- end -}}
+    
+    {{- /* 3. 【关键】把 Tag 和分类拼接到“隐形标题”中，极大增加搜索权重 */ -}}
+    {{- /* 注意：这里我们不动显示的 $title，只动存进数据库的 content */ -}}
+    
+    {{- /* 4. 获取正文并清洗 */ -}}
     {{- $content := .Plain -}}
     {{- $content = replace $content "\n" " " -}}
     {{- $content = replace $content "\r" " " -}}
     
-    {{- /* 获取 Tag 和 分类 */ -}}
-    {{- $tags_string := "" -}}
-    {{- if .Params.tags -}}
-        {{- $tags_string = delimit .Params.tags " " -}}
-    {{- end -}}
-    {{- $categories_string := "" -}}
-    {{- if .Params.categories -}}
-        {{- $categories_string = delimit .Params.categories " " -}}
-    {{- end -}}
-
-    {{- /* 拼接所有内容 */ -}}
-    {{- $final_content := print $content " " $tags_string " " $categories_string -}}
-    {{- $image := .Params.image -}}
+    {{- /* 5. 终极拼接：标题 + Tag + 分类 + 正文 + 板块名 */ -}}
+    {{- $final_content := print $title " " $tags " " $categories " " $content " " .Section -}}
     
-    {{- /* 必须带 ID */ -}}
+    {{- /* 6. 生成 JSON (注意：content 字段里现在包含了所有信息) */ -}}
     {{- $.Scratch.Add "index" (dict "id" $index "title" $title "date" $date "permalink" $permalink "content" $final_content "image" $image) -}}
+
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}

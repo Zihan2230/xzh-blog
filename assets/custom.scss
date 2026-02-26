@@ -9,10 +9,10 @@ body {
         max-width: 1600px !important;
 
         /* 2. 左侧菜单栏变窄 (原来是 20%，我们改成固定像素更稳) */
-        --left-sidebar-max-width: 260px !important;
+        --left-sidebar-max-width: 280px !important;
 
         /* 3. 右侧挂件栏变窄 (原来是 30%，这也太宽了，改成 15% 或固定像素) */
-        --right-sidebar-max-width: 280px !important;
+        --right-sidebar-max-width: 260px !important;
         
         /* 这里的逻辑是：左右变窄了，中间剩下的空间自然就给文章了！ */
     }
