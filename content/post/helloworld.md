@@ -7,7 +7,7 @@ date: 2026-02-22T00:00:00+08:00
 description: "测试数学公式和图片"
 
 categories:
-  - "Test"
+  - "日常"
 tags:
   - "Hugo"
   - "Math"
