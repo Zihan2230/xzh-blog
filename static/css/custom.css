@@ -1,5 +1,9 @@
 /* assets/scss/custom.scss */
 
+/* 引入聊天气泡组件 */
+@import url("chat.css");
+
+
 /* 针对电脑宽屏 (宽度大于 1024px) */
 @media (min-width: 1024px) {
     .container.extended {
@@ -41,3 +45,8 @@
     transform: translateY(-2px); /* 微微上浮 */
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
+
+
+
+
+

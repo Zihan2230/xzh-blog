@@ -1,0 +1,24 @@
+{{ $align := .Get "align" | default "left" }}
+{{ $color := .Get "color" | default "gray" }} {{ $name := .Get "name" | default "" }}
+{{ $avatar := .Get "avatar" | default "" }}
+
+<div class="xzh-chat-row xzh-chat-{{ $align }}">
+{{ if eq $align "left" }}
+<div class="xzh-chat-avatar">
+{{ if $avatar }}<img src="{{ $avatar }}" alt="avatar">{{ else }}😊{{ end }}
+</div>
+{{ end }}
+
+<div class="xzh-chat-message">
+{{ if $name }}<div class="xzh-chat-name">{{ $name }}</div>{{ end }}
+<div class="xzh-chat-bubble xzh-bubble-{{ $color }}">
+{{ .Inner | markdownify }}
+</div>
+</div>
+
+{{ if eq $align "right" }}
+<div class="xzh-chat-avatar">
+{{ if $avatar }}<img src="{{ $avatar }}" alt="avatar">{{ else }}子涵{{ end }}
+</div>
+{{ end }}
+</div>

@@ -14,7 +14,7 @@ tags: ["概率论", "天才枪手" , "Math"]
 
 通过复原的部分试卷，我轻松写完，并打开$\LaTeX$整理出来。如下为文档链接：
 
-| **概率论补考部分** | 2024-3-11 | <a href="/files/Math_Probability_retake_260311.pdf" target="_blank" class="download-btn">点击下载 (90KB)</a> |
+| **概率论补考部分** | 2026-3-11 | <a href="/files/Math_Probability_retake_260311.pdf" target="_blank" class="download-btn">点击下载 (90KB)</a> |
 | :--- | :--- | :--- |
 
 在开考一个小时以内完成如上工作，声明都没来得急改哈哈哈。

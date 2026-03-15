@@ -1,0 +1,63 @@
+{{ $hint := .Get "hint" | default "这是一篇私密文章，请输入密码解锁" }}
+{{ $pwd := .Get "pwd" }}
+
+<div class="xzh-lock-container" id="lock-{{ .Ordinal }}">
+    <div class="xzh-lock-screen">
+        <div class="xzh-lock-icon">🔒</div>
+        <h3 style="margin-top: 10px;">私密日记</h3>
+        <p style="color: #666; font-size: 0.9em; margin-bottom: 20px;">💡 提示：{{ $hint }}</p>
+        
+        <div class="xzh-input-group">
+            <input type="password" id="pwd-{{ .Ordinal }}" placeholder="输入密码...">
+            <button onclick="checkPwd('{{ .Ordinal }}', '{{ $pwd }}')">解 锁</button>
+        </div>
+        <p class="xzh-err-msg" id="err-{{ .Ordinal }}">密码不对喔，再想想？</p>
+    </div>
+
+    <div class="xzh-secret-content">
+        {{ .Inner | markdownify }}
+    </div>
+</div>
+
+<style>
+.xzh-lock-container { margin: 30px 0; }
+.xzh-lock-screen {
+    background: var(--card-background);
+    border: 2px dashed #ccc;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.xzh-lock-icon { font-size: 40px; }
+.xzh-input-group { display: flex; justify-content: center; gap: 10px; }
+.xzh-input-group input {
+    padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; outline: none; transition: 0.3s;
+}
+.xzh-input-group input:focus { border-color: #3b82f6; }
+.xzh-input-group button {
+    padding: 8px 20px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s;
+}
+.xzh-input-group button:hover { background: #2563eb; }
+.xzh-err-msg { color: #ef4444; font-size: 0.85em; margin-top: 15px; display: none; }
+.xzh-secret-content { display: none; /* 默认隐藏正文 */ }
+</style>
+
+<script>
+function checkPwd(id, correctPwd) {
+    const inputVal = document.getElementById('pwd-' + id).value;
+    const errMsg = document.getElementById('err-' + id);
+    const lockScreen = document.getElementById('lock-' + id).querySelector('.xzh-lock-screen');
+    const content = document.getElementById('lock-' + id).querySelector('.xzh-secret-content');
+
+    if (inputVal === correctPwd) {
+        // 密码正确：隐藏锁屏，显示内容
+        lockScreen.style.display = 'none';
+        content.style.display = 'block';
+    } else {
+        // 密码错误：显示提示
+        errMsg.style.display = 'block';
+        setTimeout(() => { errMsg.style.display = 'none'; }, 2000); // 2秒后错误提示消失
+    }
+}
+</script>
