@@ -2,7 +2,8 @@
 
 /* 引入聊天气泡组件 */
 @import url("chat.css");
-
+/* 引入赛博刮刮乐：防剧透掩码 */
+@import url("mask.css");
 
 /* 针对电脑宽屏 (宽度大于 1024px) */
 @media (min-width: 1024px) {

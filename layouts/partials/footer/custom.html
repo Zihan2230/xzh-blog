@@ -1,0 +1,98 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. 这里是你的“表情字典”，把常用的都列出来
+    const emojiDict = {
+        "[666]": "/img/emoji/666.png",
+        "[Emm]": "/img/emoji/Emm.png",
+        "[亲亲]": "/img/emoji/亲亲.png",
+        "[偷笑]": "/img/emoji/偷笑.png",
+        "[傲慢]": "/img/emoji/傲慢.png",
+        "[再见]": "/img/emoji/再见.png",
+        "[加油]": "/img/emoji/加油.png",
+        "[发呆]": "/img/emoji/发呆.png",
+        "[发怒]": "/img/emoji/发怒.png",
+        "[可怜]": "/img/emoji/可怜.png",
+        "[右哼哼]": "/img/emoji/右哼哼.png",
+        "[叹气]": "/img/emoji/叹气.png",
+        "[吃瓜]": "/img/emoji/吃瓜.png",
+        "[吐]": "/img/emoji/吐.png",
+        "[呲牙]": "/img/emoji/呲牙.png",
+        "[咒骂]": "/img/emoji/咒骂.png",
+        "[哇]": "/img/emoji/哇.png",
+        "[嘘]": "/img/emoji/嘘.png",
+        "[嘿哈]": "/img/emoji/嘿哈.png",
+        "[囧]": "/img/emoji/囧.png",
+        "[困]": "/img/emoji/困.png",
+        "[坏笑]": "/img/emoji/坏笑.png",
+        "[大哭]": "/img/emoji/大哭.png",
+        "[天啊]": "/img/emoji/天啊.png",
+        "[失望]": "/img/emoji/失望.png",
+        "[奸笑]": "/img/emoji/奸笑.png",
+        "[好的]": "/img/emoji/好的.png",
+        "[委屈]": "/img/emoji/委屈.png",
+        "[害羞]": "/img/emoji/害羞.png",
+        "[尴尬]": "/img/emoji/尴尬.png",
+        "[得意]": "/img/emoji/得意.png",
+        "[微笑]": "/img/emoji/微笑.png",
+        "[快哭了]": "/img/emoji/快哭了.png",
+        "[恐惧]": "/img/emoji/恐惧.png",
+        "[悠闲]": "/img/emoji/悠闲.png",
+        "[惊恐]": "/img/emoji/惊恐.png",
+        "[惊讶]": "/img/emoji/惊讶.png",
+        "[愉快]": "/img/emoji/愉快.png",
+        "[憨笑]": "/img/emoji/憨笑.png",
+        "[打脸]": "/img/emoji/打脸.png",
+        "[抓狂]": "/img/emoji/抓狂.png",
+        "[抠鼻]": "/img/emoji/抠鼻.png",
+        "[捂脸]": "/img/emoji/捂脸.png",
+        "[撇嘴]": "/img/emoji/撇嘴.png",
+        "[擦汗]": "/img/emoji/擦汗.png",
+        "[敲打]": "/img/emoji/敲打.png",
+        "[无语]": "/img/emoji/无语.png",
+        "[旺柴]": "/img/emoji/旺柴.png",
+        "[晕]": "/img/emoji/晕.png",
+        "[机智]": "/img/emoji/机智.png",
+        "[汗]": "/img/emoji/汗.png",
+        "[流泪]": "/img/emoji/流泪.png",
+        "[生病]": "/img/emoji/生病.png",
+        "[疑问]": "/img/emoji/疑问.png",
+        "[白眼]": "/img/emoji/白眼.png",
+        "[皱眉]": "/img/emoji/皱眉.png",
+        "[睡]": "/img/emoji/睡.png",
+        "[破涕为笑]": "/img/emoji/破涕为笑.png",
+        "[社会]": "/img/emoji/社会.png",
+        "[笑脸]": "/img/emoji/笑脸.png",
+        "[翻白眼]": "/img/emoji/翻白眼.png",
+        "[耶]": "/img/emoji/耶.png",
+        "[脸红]": "/img/emoji/脸红.png",
+        "[色]": "/img/emoji/色.png",
+        "[苦涩]": "/img/emoji/苦涩.png",
+        "[衰]": "/img/emoji/衰.png",
+        "[裂开]": "/img/emoji/裂开.png",
+        "[让我看看]": "/img/emoji/让我看看.png",
+        "[调皮]": "/img/emoji/调皮.png",
+        "[鄙视]": "/img/emoji/鄙视.png",
+        "[闭嘴]": "/img/emoji/闭嘴.png",
+        "[阴险]": "/img/emoji/阴险.png",
+        "[难过]": "/img/emoji/难过.png",
+        "[骷髅]": "/img/emoji/骷髅.png",
+        "[鼓掌]": "/img/emoji/鼓掌.png"
+    };
+
+    // 2. 找到文章正文和聊天气泡
+    const contentAreas = document.querySelectorAll('.article-content, .xzh-chat-bubble');
+
+    // 3. 执行替换逻辑
+    contentAreas.forEach(area => {
+        let htmlContent = area.innerHTML;
+        for (let textCode in emojiDict) {
+            // 正则转义处理括号
+            let safeCode = textCode.replace(/\[/g, '\\[').replace(/\]/g, '\\]');
+            let regex = new RegExp(safeCode, 'g');
+            let imgTag = `<img src="${emojiDict[textCode]}" class="wx-emoji" alt="${textCode}">`;
+            htmlContent = htmlContent.replace(regex, imgTag);
+        }
+        area.innerHTML = htmlContent;
+    });
+});
+</script>

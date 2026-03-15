@@ -1,0 +1,13 @@
+/* 赛博刮刮乐：防剧透掩码 */
+.xzh-mask {
+    background-color: #252525; /* 极客黑底色 */
+    color: #252525;            /* 文字也是黑色，完美隐藏 */
+    padding: 0 4px;
+    border-radius: 3px;
+    transition: color 0.3s ease; /* 渐变显示，比较丝滑 */
+    cursor: pointer;
+}
+/* 鼠标悬停 (电脑) 或者 点击 (手机) 时，文字变成白色 */
+.xzh-mask:hover, .xzh-mask:active {
+    color: #ffffff;
+}

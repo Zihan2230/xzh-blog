@@ -81,3 +81,15 @@
     background: #2b2b2b; /* 极客黑 */
     color: #f1f1f1; 
 }
+
+/* 微信专属表情样式：和文字一般大，完美融入 */
+.wx-emoji {
+    width: 1.4em !important; 
+    height: 1.4em !important;
+    vertical-align: -0.25em !important; /* 往下沉一点，和文字基线对齐 */
+    display: inline-block !important;
+    margin: 0 2px !important;
+    border-radius: 0 !important; 
+    box-shadow: none !important; 
+    background: transparent !important;
+}
